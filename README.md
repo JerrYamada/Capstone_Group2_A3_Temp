@@ -12,7 +12,7 @@ This app will be on a hosted website at the end of its development. But right no
 
 Edit appsettings.json and update the local database in the NuGet console before testing locally.
 ```
-UPDATE DATABASE
+UPDATE-DATABASE
 ```
 
 
