@@ -1,0 +1,17 @@
+﻿@model TimetableTask
+
+@{
+    ViewData["Title"] = "Delete Task Confirmation";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>Are you sure you want to delete the following task? 
+    <br></br>
+    @Model.TaskName (Due Date: @Model.End_Date.ToString()</p>
+
+<form asp-controller="Task" asp-action="ProcessDeleteRequestById" asp-route-id="@Model.TaskId" method="post" enctype="application/x-www-form-urlencoded">
+    <button type="submit" class="btn btn-danger">Confirm Deletion</button>
+    <a asp-controller="Task" asp-action="GetAllTasks" class="btn btn-secondary">Cancel</a>
+</form>
+

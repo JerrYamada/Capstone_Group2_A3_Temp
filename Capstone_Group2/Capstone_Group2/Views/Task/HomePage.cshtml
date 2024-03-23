@@ -1,0 +1,60 @@
+﻿@model List<TaskViewModel>
+@using Capstone_Group2.Entities;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Timewize</h1>
+</div>
+
+<div class="container mt-5">
+    <h1>Tasks due soon</h1>
+    <a asp-action="GetAllTasks" asp-controller="Task">Go to the Task Page</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Task Category</th>
+                <th>Task Name</th>
+                <th>Task Description</th>
+                <th>Start Date</th>
+                <th>Due Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var task in Model)
+            {
+                string priorityColor = "";
+
+                if (task != null && task.Priority != null)
+                {
+                    int priorityId = task.Priority.PriorityId;
+
+                    if (priorityId == 1)
+                    {
+                        priorityColor = "blue";
+                    }
+                    else if (priorityId == 2)
+                    {
+                        priorityColor = "orange";
+                    }
+                    else if (priorityId == 3)
+                    {
+                        priorityColor = "crimson";
+                    }
+                }
+
+                <tr style="background-color: @priorityColor">
+                    <td>@(task?.Category?.CategoryName)</td>
+                    <td>@(task?.TaskName)</td>
+                    <td>@(task?.TaskDescription)</td>
+                    <td>@(task?.Start_Date.ToString())</td>
+                    <td>@(task?.End_Date.ToString())</td>
+                    <td>@(task?.Status?.StatusName)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
